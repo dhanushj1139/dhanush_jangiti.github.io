@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dhanush Yadav Jangiti | Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --card: #16161f;
+      --border: #1e1e2e;
+      --accent: #00e5ff;
+      --accent2: #7c3aed;
+      --accent3: #f59e0b;
+      --text: #e8e8f0;
+      --muted: #8888a8;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 5%;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 1.2rem;
+      color: var(--accent);
+      letter-spacing: -0.5px;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.88rem; font-weight: 500; letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,229,255,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid; grid-template-columns: 1fr auto;
+      align-items: center; gap: 4rem; max-width: 1100px; width: 100%;
+    }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 2px;
+      color: var(--accent); text-transform: uppercase;
+      border: 1px solid rgba(0,229,255,0.3);
+      padding: 0.3rem 0.9rem; border-radius: 100px;
+      margin-bottom: 1.4rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.1; letter-spacing: -1.5px;
+      color: var(--white);
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero-sub {
+      margin-top: 1.2rem; font-size: 1.05rem;
+      color: var(--muted); max-width: 520px;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      margin-top: 2.2rem;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+    .btn {
+      padding: 0.75rem 1.8rem; border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
+      font-size: 0.9rem; cursor: pointer; text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #000;
+    }
+    .btn-primary:hover { background: #33eaff; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid var(--border); color: var(--text);
+      background: transparent;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-avatar {
+      width: 220px; height: 220px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 4.5rem; font-weight: 800;
+      color: #fff; flex-shrink: 0;
+      box-shadow: 0 0 60px rgba(0,229,255,0.15);
+      animation: fadeUp 0.7s ease 0.15s both;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 5rem 5%; max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -1px; color: var(--white);
+      margin-bottom: 2.5rem;
+    }
+    .divider {
+      width: 100%; height: 1px;
+      background: var(--border); margin: 0;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.9; }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.4rem;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif; font-size: 2rem;
+      font-weight: 800; color: var(--accent);
+    }
+    .stat-label { font-size: 0.82rem; color: var(--muted); margin-top: 0.2rem; }
+
+    /* ── SKILLS ── */
+    .skills-wrap {
+      display: flex; flex-wrap: wrap; gap: 0.75rem;
+    }
+    .skill-pill {
+      padding: 0.5rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.85rem; font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill-pill:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(0,229,255,0.05);
+    }
+    .skill-pill.core { border-color: rgba(0,229,255,0.3); color: var(--accent); }
+    .skills-group { margin-bottom: 2rem; }
+    .skills-group-label {
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 1.5px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover { border-color: rgba(0,229,255,0.2); transform: translateY(-4px); }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-num {
+      font-family: 'Syne', sans-serif; font-size: 0.7rem;
+      font-weight: 700; color: var(--accent); letter-spacing: 2px;
+      margin-bottom: 0.8rem;
+    }
+    .project-title {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: var(--white); margin-bottom: 0.8rem;
+    }
+    .project-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.7; margin-bottom: 1.2rem; }
+    .project-tools { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.4rem; }
+    .tool-tag {
+      font-size: 0.75rem; padding: 0.25rem 0.65rem;
+      border-radius: 6px; background: rgba(124,58,237,0.15);
+      color: #a78bfa; border: 1px solid rgba(124,58,237,0.2);
+    }
+    .project-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.85rem; font-weight: 500; color: var(--accent);
+      text-decoration: none; transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.7rem; }
+
+    /* ── EXPERIENCE ── */
+    .exp-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      display: grid; grid-template-columns: auto 1fr; gap: 1.5rem;
+    }
+    .exp-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); margin-top: 6px; flex-shrink: 0;
+      box-shadow: 0 0 12px rgba(0,229,255,0.5);
+    }
+    .exp-role {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--white);
+    }
+    .exp-company { font-size: 0.9rem; color: var(--accent); margin: 0.2rem 0 0.6rem; }
+    .exp-date { font-size: 0.8rem; color: var(--muted); margin-bottom: 1rem; }
+    .exp-bullets { list-style: none; }
+    .exp-bullets li {
+      font-size: 0.9rem; color: var(--muted); padding: 0.3rem 0;
+      padding-left: 1rem; position: relative;
+    }
+    .exp-bullets li::before {
+      content: '→'; position: absolute; left: 0; color: var(--accent);
+    }
+
+    /* ── EDUCATION ── */
+    .edu-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem;
+    }
+    .edu-degree {
+      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-size: 1.1rem; color: var(--white);
+    }
+    .edu-inst { font-size: 0.9rem; color: var(--muted); margin-top: 0.3rem; }
+    .edu-year { font-size: 0.85rem; color: var(--muted); }
+    .cgpa-badge {
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3);
+      color: var(--accent3); font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      padding: 0.6rem 1.2rem; border-radius: 10px;
+    }
+
+    /* ── CERTS ── */
+    .certs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    .cert-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.2rem 1.4rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .cert-icon { font-size: 1.3rem; }
+    .cert-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+    .cert-issuer { font-size: 0.75rem; color: var(--muted); }
+
+    /* ── CONTACT ── */
+    .contact-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+    }
+    .contact-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      text-decoration: none; transition: all 0.2s;
+    }
+    .contact-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(0,229,255,0.08); border: 1px solid rgba(0,229,255,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+    .contact-label { font-size: 0.78rem; color: var(--muted); }
+    .contact-value { font-size: 0.92rem; font-weight: 500; color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.82rem; color: var(--muted);
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-avatar { width: 140px; height: 140px; font-size: 3rem; order: -1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DYJ</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <span class="hero-tag">AI & Data Science Graduate</span>
+      <h1>Dhanush Yadav<br /><span>Jangiti</span></h1>
+      <p class="hero-sub">
+        Transforming raw data into actionable insights. Passionate about Data Analytics,
+        Machine Learning & Business Intelligence.
+      </p>
+      <div class="hero-btns">
+        <a href="resume.pdf" class="btn btn-primary" download>Download Resume</a>
+        <a href="#contact" class="btn btn-outline">Get In Touch</a>
+      </div>
+    </div>
+    <div class="hero-avatar">DY</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <p class="section-label">Who I Am</p>
+  <h2 class="section-title">About Me</h2>
+  <div class="about-grid">
+    <p class="about-text">
+      I'm an AI & Data Science graduate with strong skills in Python, SQL, Pandas,
+      Tableau, and Power BI. I have hands-on experience in data analysis, data cleaning,
+      ETL workflows, and machine learning through real-world projects.<br /><br />
+      I'm passionate about transforming raw data into actionable insights and helping
+      organizations make smarter, data-driven decisions. Eager to grow in a Data Analyst
+      role while continuously expanding my analytical toolkit.
+    </p>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">8.14</div>
+        <div class="stat-label">CGPA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">ML Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Certifications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">5+</div>
+        <div class="stat-label">Tools Mastered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label">Expertise</p>
+  <h2 class="section-title">Technical Skills</h2>
+
+  <div class="skills-group">
+    <p class="skills-group-label">Core Data Skills</p>
+    <div class="skills-wrap">
+      <span class="skill-pill core">Python</span>
+      <span class="skill-pill core">SQL</span>
+      <span class="skill-pill core">Pandas</span>
+      <span class="skill-pill core">NumPy</span>
+      <span class="skill-pill core">Power BI</span>
+      <span class="skill-pill core">Tableau</span>
+      <span class="skill-pill core">Excel</span>
+      <span class="skill-pill core">EDA</span>
+      <span class="skill-pill core">ETL / ELT</span>
+      <span class="skill-pill core">Data Cleaning</span>
+      <span class="skill-pill core">Feature Engineering</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-label">Machine Learning & AI</p>
+    <div class="skills-wrap">
+      <span class="skill-pill">Scikit-learn</span>
+      <span class="skill-pill">TensorFlow</span>
+      <span class="skill-pill">PyTorch</span>
+      <span class="skill-pill">NLTK</span>
+      <span class="skill-pill">NLP</span>
+      <span class="skill-pill">SMOTE</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-label">Databases & Cloud</p>
+    <div class="skills-wrap">
+      <span class="skill-pill">MySQL</span>
+      <span class="skill-pill">Oracle</span>
+      <span class="skill-pill">MongoDB</span>
+      <span class="skill-pill">SQLite</span>
+      <span class="skill-pill">AWS</span>
+      <span class="skill-pill">Azure</span>
+      <span class="skill-pill">Flask</span>
+      <span class="skill-pill">Streamlit</span>
+      <span class="skill-pill">Django</span>
+    </div>
+  </div>
+
+  <div class="skills-group">
+    <p class="skills-group-label">Tools & Others</p>
+    <div class="skills-wrap">
+      <span class="skill-pill">Git & GitHub</span>
+      <span class="skill-pill">Jupyter Notebook</span>
+      <span class="skill-pill">VS Code</span>
+      <span class="skill-pill">Google Colab</span>
+      <span class="skill-pill">Matplotlib</span>
+      <span class="skill-pill">Seaborn</span>
+      <span class="skill-pill">Polars (learning)</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Work</p>
+  <h2 class="section-title">Projects</h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">01 — ML</div>
+      <div class="project-title">Customer Churn Prediction</div>
+      <p class="project-desc">
+        Built an end-to-end data pipeline for ~20,000 telecom records with SMOTE class
+        balancing and a deep learning model achieving 87% test accuracy. Insights directly
+        supported business retention strategy.
+      </p>
+      <div class="project-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">TensorFlow</span>
+        <span class="tool-tag">Pandas</span>
+        <span class="tool-tag">ETL</span>
+        <span class="tool-tag">Matplotlib</span>
+      </div>
+      <a href="https://github.com/dhanushyadav-jangiti" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02 — ML</div>
+      <div class="project-title">Movie Recommendation System</div>
+      <p class="project-desc">
+        Designed a data pipeline on MovieLens (~100k ratings) using collaborative &
+        content-based filtering with cosine similarity. Deployed as a Flask web app on AWS
+        with 82% accuracy in predicting user preferences.
+      </p>
+      <div class="project-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">Scikit-learn</span>
+        <span class="tool-tag">Flask</span>
+        <span class="tool-tag">AWS</span>
+        <span class="tool-tag">Pandas</span>
+      </div>
+      <a href="https://github.com/dhanushyadav-jangiti" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">03 — NLP</div>
+      <div class="project-title">Fake News Detection</div>
+      <p class="project-desc">
+        Built an NLP pipeline to classify news articles using TF-IDF and logistic regression.
+        Experimented with Naive Bayes, Random Forest, and SVM; packaged into an interactive
+        Streamlit app for real-time predictions.
+      </p>
+      <div class="project-tools">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">NLTK</span>
+        <span class="tool-tag">Scikit-learn</span>
+        <span class="tool-tag">Streamlit</span>
+        <span class="tool-tag">NLP</span>
+      </div>
+      <a href="https://github.com/dhanushyadav-jangiti" class="project-link" target="_blank">View on GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label">Experience</p>
+  <h2 class="section-title">Internship</h2>
+  <div class="exp-card">
+    <div class="exp-dot"></div>
+    <div>
+      <div class="exp-role">Python Django Intern</div>
+      <div class="exp-company">Assistive Infotech Limited</div>
+      <div class="exp-date">January 2024 · 3 Weeks</div>
+      <ul class="exp-bullets">
+        <li>Developed a full-stack To-Do List web app with CRUD functionality using Django ORM, SQLite, and HTML/CSS.</li>
+        <li>Implemented data models, dynamic views, and templates; managed backend data through Django admin panel.</li>
+        <li>Gained hands-on experience in data storage, retrieval workflows, and backend development.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <p class="section-label">Academics</p>
+  <h2 class="section-title">Education</h2>
+  <div class="edu-card">
+    <div>
+      <div class="edu-degree">B.Tech — Artificial Intelligence & Data Science</div>
+      <div class="edu-inst">Siddharth Institute of Engineering and Technology, Tirupati, India</div>
+      <div class="edu-year">Expected: May 2026</div>
+    </div>
+    <div class="cgpa-badge">CGPA: 8.14</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <p class="section-label">Credentials</p>
+  <h2 class="section-title">Certifications</h2>
+  <div class="certs-grid">
+    <div class="cert-card">
+      <div class="cert-icon">🐍</div>
+      <div>
+        <div class="cert-name">Python</div>
+        <div class="cert-issuer">GeeksforGeeks · Certified</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🗄️</div>
+      <div>
+        <div class="cert-name">SQL</div>
+        <div class="cert-issuer">GeeksforGeeks · Certified</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🌐</div>
+      <div>
+        <div class="cert-name">Django</div>
+        <div class="cert-issuer">GeeksforGeeks · Certified</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">Let's Talk</p>
+  <h2 class="section-title">Contact</h2>
+  <div class="contact-grid">
+    <a href="mailto:dhanushyadav.jangiti@gmail.com" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <div class="contact-label">Email</div>
+        <div class="contact-value">dhanushyadav.jangiti@gmail.com</div>
+      </div>
+    </a>
+    <a href="tel:+919391647335" class="contact-card">
+      <div class="contact-icon">📞</div>
+      <div>
+        <div class="contact-label">Phone</div>
+        <div class="contact-value">+91 93916 47335</div>
+      </div>
+    </a>
+    <a href="https://www.linkedin.com/in/dhanush-yadav-jangiti" target="_blank" class="contact-card">
+      <div class="contact-icon">💼</div>
+      <div>
+        <div class="contact-label">LinkedIn</div>
+        <div class="contact-value">dhanush-yadav-jangiti</div>
+      </div>
+    </a>
+    <a href="https://github.com/dhanushyadav-jangiti" target="_blank" class="contact-card">
+      <div class="contact-icon">🐙</div>
+      <div>
+        <div class="contact-label">GitHub</div>
+        <div class="contact-value">dhanushyadav-jangiti</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Dhanush Yadav Jangiti · Built with ❤️ and clean code
+</footer>
+
+</body>
+</html>
